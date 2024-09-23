@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ContactAppProject.Models.Contact>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container" id="itemList">
+
+    <p>
+        <div>
+            <button type="button" class="btn btn-outline-success" id="btnAdd">
+                Create New Contact
+            </button>
+        </div>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="tblBody">
+            @*data comes from ajax*@
+        </tbody>
+
+    </table>
+</div>
+
+
+<div id="newContact" style="display:none" class="container">
+        @Html.Partial("_AddContactPartial")
+    </div>
+
+    <div id="editContact" style="display:none" class="container">
+        @Html.Partial("_EditContactPartial")
+    </div>
+
+@*scripts*@
+
+
+<script src="~/Scripts/myCrud.js"></script>
+<script>
+    $(document).ready(() => {
+        
+        loadContacts();
+    });
+</script>
+
+
+

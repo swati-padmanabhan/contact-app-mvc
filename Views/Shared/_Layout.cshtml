@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <!--styling links-->
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+
+    <!--first jquery then jqgrid-->
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Connectify</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <!-- Add any additional navbar links here if needed -->
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (!Request.Path.Contains("Login"))
+                        {
+                            if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    @Html.ActionLink("Register User", "Register", "User", new { area = "" }, new { @class = "nav-link" })
+                                </li>
+                                <li class="nav-item">
+                                    @Html.ActionLink("View Admins", "ViewAdmins", "User", new { area = "" }, new { @class = "nav-link" })
+                                </li>
+                            }
+                            <li class="nav-item">
+                                @Html.ActionLink("Logout", "Logout", "User", new { area = "" }, new { @class = "nav-link" })
+                            </li>
+                        }
+                    }
+                    </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+</body>
+</html>

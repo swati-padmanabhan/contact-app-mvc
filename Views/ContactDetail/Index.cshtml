@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container" id="contactDetailList">
+    <h2>List of Contact Details</h2>
+
+    <table id="contactDetailGrid"></table>
+    <div id="pager"></div> <!--jqgrid pager-->
+    @Html.ActionLink("Back to Contact List", "Index", "Contact")
+
+</div>
+@*formatting and displaying JqGrid*@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css">
+<script src="~/Scripts/myCrud.js"></script>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ContactAppProject.Models.Contact>
+
+@{
+    ViewBag.Title = "ViewContacts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewContacts</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Contact Details", "ViewContactDetails", new { contactId = item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>
